@@ -1,5 +1,38 @@
-movies = ['PARADISE', 'BAHUBALI', 'RRR', 'KGF']
+movies = ['BAHUBALI', 'RRR']
+shows = [
+    {
+        "movie": "RRR",
+        "date": "25-09-2026",
+        "time": "06:00 PM",
+        "screen": "Screen 1",
+        "price": 200
+    },
 
+    {
+        'movie': "RRR",
+        'date': "25-09-2026",
+        'time': "09:00 PM",
+        'screen': "Screen 2",
+        'price': 250
+    },
+
+    {
+        "movie": "RRR",
+        "date": "26-09-2026",
+        "time": "08:00 PM",
+        "screen": "Screen 1",
+        "price": 200
+    },
+
+    
+    {
+        "movie": "BAHUBALI",
+        "date": "30-09-2026",
+        "time": "07:00 PM",
+        "screen": "Screen 2",
+        "price": 250
+    }
+]
 
 def movie_booking():
     print("================================")
@@ -65,18 +98,80 @@ def admin_menu():
         print("Invalid choice")
 
 def add_movie():
-    movie_name = input("Enter the name of the movie to add: ")
-    print(f"Movie '{movie_name}' added successfully!")
-    admin_menu()
+    while True:
+        movie_name = input("Enter the name of the movie to add: ")
+        if movie_name in movies:
+            print(f"{movie_name} is already in the list.")
+        else:
+            movies.append(movie_name)
+            print(f"{movie_name} has been added to the list.")
+        admin_choice = input("Do you want to add another movie? (y/n): ")
+        if admin_choice.lower() != 'y':
+            break
 
 def display_movies():
-    print("Displaying all movies:")
     for movie in movies:
         print(movie)
     admin_menu()
+    
+
+def remove_movie():
+    while True:
+        movie_name = input("Enter the name of the movie to remove: ").upper()
+
+        if movie_name in movies:
+            movies.remove(movie_name)
+
+            for show in shows:
+                if show['movie'] == movie_name:
+                    shows.remove(show)
+
+            print(f"{movie_name} removed successfully.")
+        else:
+            print(f"{movie_name} is not in the movie list.")
+
+        choice = input("Do you want to remove another movie? (y/n): ")
+
+        if choice.lower() == 'y':
+            continue
+        else:
+            admin_menu()
+            break
 
 
-
+def display_shows():
+    print("================================")
+    print("             ALL SHOWS          ")
+    print("================================")
+    for show in range(len(shows)):
+        print(f"Movie: {shows[show]['movie']}\n Date: {shows[show]['date']}\n Time: {shows[show]['time']}\n Screen: {shows[show]['screen']}\n Price: {shows[show]['price']}")
+        print('-----------------------------')
+    admin_menu()
 
 
 movie_booking()
+
+
+
+
+
+
+
+def remove_movie():
+    while True:
+        movie_name = input("Enter the name of the movie to remove: ").upper()
+        time = input("Enter show time: ")
+        for show in shows:
+            if show['movie']==movie_name and show['time']==time:
+                shows.remove(show)
+                print("Show removed successfully.")
+            else:
+                print("Invalid")
+        admin_menu()
+
+        admin_choice = input("Do you want to remove another movie? (y/n): ")
+        if admin_choice.lower() != 'n':
+            admin_menu()
+            break
+        else:
+            remove_movie()
