@@ -122,11 +122,20 @@ def remove_movie():
         if movie_name in movies:
             movies.remove(movie_name)
 
-            for show in shows:
-                if show['movie'] == movie_name:
-                    shows.remove(show)
+            while True:
+                found = False
 
-            print(f"{movie_name} removed successfully.")
+                for show in shows:
+                    if show["movie"] == movie_name:
+                        shows.remove(show)
+                        found = True
+                        break
+
+                if found == False:
+                    break
+
+            print(f"{movie_name} and all its shows removed successfully.")
+
         else:
             print(f"{movie_name} is not in the movie list.")
 
@@ -137,7 +146,6 @@ def remove_movie():
         else:
             admin_menu()
             break
-
 
 def display_shows():
     print("================================")
