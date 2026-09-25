@@ -1,4 +1,5 @@
 movies = ['BAHUBALI', 'RRR']
+bookings = []
 
 screen1_seats = [
     "A1", "A2", "A3", "A4", "A5",
@@ -14,19 +15,29 @@ screen2_seats = [
 
 shows = [
     {
-        "movie": "RRR",
-        "date": "25-09-2026",
-        "time": "06:00 PM",
-        "screen": "Screen 1",
-        "price": 200
-    },
+    "movie": "RRR",
+    "date": "25-09-2026",
+    "time": "06:00 PM",
+    "screen": "Screen 1",
+    "price": 200,
+    "seats": [
+        "A1", "A2", "A3", "A4", "A5",
+        "B1", "B2", "B3", "B4", "B5",
+        "C1", "C2", "C3", "C4", "C5"
+    ]
+},
 
     {
         'movie': "RRR",
         'date': "25-09-2026",
         'time': "09:00 PM",
         'screen': "Screen 2",
-        'price': 250
+        'price': 250,
+        "seats": [
+        "A1", "A2", "A3", "A4", "A5",
+        "B1", "B2", "B3", "B4", "B5",
+        "C1", "C2", "C3", "C4", "C5"
+    ]
     },
 
     {
@@ -34,7 +45,12 @@ shows = [
         "date": "26-09-2026",
         "time": "08:00 PM",
         "screen": "Screen 1",
-        "price": 200
+        "price": 200,
+        "seats": [
+        "A1", "A2", "A3", "A4", "A5",
+        "B1", "B2", "B3", "B4", "B5",
+        "C1", "C2", "C3", "C4", "C5"
+    ]
     },
 
     
@@ -43,7 +59,12 @@ shows = [
         "date": "30-09-2026",
         "time": "07:00 PM",
         "screen": "Screen 2",
-        "price": 250
+        "price": 250,
+        "seats": [
+        "A1", "A2", "A3", "A4", "A5",
+        "B1", "B2", "B3", "B4", "B5",
+        "C1", "C2", "C3", "C4", "C5"
+    ]
     }
 ]
 
@@ -198,7 +219,7 @@ def add_show():
     d = {}
 
     show_add_list = []
-    show_details = ['movie', 'date', 'time', 'screen', 'price']
+    show_details = ['movie', 'date', 'time', 'screen', 'price', 'seats']
 
     show_movie = input("Enter the movie name: ").upper()
 
@@ -215,6 +236,8 @@ def add_show():
 
     show_screen = input("Add Screen No: ")
 
+
+
     if show_screen not in ["Screen 1", "Screen 2"]:
         print("Only Screen 1 and Screen 2 are available.")
         admin_menu()
@@ -227,16 +250,18 @@ def add_show():
             return
 
     show_price = int(input("Enter the ticket price: "))
-
-    # Add movie only after all validations are successful
+    if show_screen == "Screen 1":
+        show_seats = screen1_seats
+    else:
+        show_seats = screen2_seats
     if show_movie not in movies:
         movies.append(show_movie)
-
     show_add_list.append(show_movie)
     show_add_list.append(show_date)
     show_add_list.append(show_time)
     show_add_list.append(show_screen)
     show_add_list.append(show_price)
+    show_add_list.append(show_seats)
 
     for i in range(len(show_details)):
         if show_details[i] not in d:
@@ -308,18 +333,30 @@ def user_login():
     elif user_choice == 3:
         user_book_tickets()
     elif user_choice == 4:
-        pass
+        user_view_booking()
     elif user_choice == 5:
         movie_booking()
     else:
         print("Invalid choice")
 
-def user_shows(show):
-    if show["screen"] =="Screen 1":
-        return screen1_seats
-    else:
-        return screen2_seats
 
+def user_view_booking():
+    if len(bookings) == 0:
+        print("No bookings found.")
+    else:
+        for booking in bookings:
+            print("Movie:", booking["movie"])
+            print("Date:", booking["date"])
+            print("Time:", booking["time"])
+            print("Screen:", booking["screen"])
+            print("Seats:", booking["seats"])
+            print("Amount:", booking["amount"])
+            print("-----------------------------")
+
+    user_login()
+
+def user_shows(show):
+    return show["seats"]
 
 def user_screen(show):
     if show["screen"] =="Screen 1":
@@ -360,9 +397,18 @@ def user_seat(show):
     if seat_no == len(selected_seats):
         print('Selected Seats: ',selected_seats)
         print(f"The Amount you need to pay {len(selected_seats)*price} for {len(selected_seats)} seats")
-        
-    print()
 
+        booking = {
+        "movie": show["movie"],
+        "date": show["date"],
+        "time": show["time"],
+        "screen": show["screen"],
+        "seats": selected_seats,
+        "amount": len(selected_seats) * price
+    }
+
+        bookings.append(booking)
+    user_login()
 
 def user_book_tickets():
     user_display_movies()
