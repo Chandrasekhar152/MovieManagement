@@ -7,7 +7,7 @@ This is a console-based application with two main sides:
 - **Admin**
 - **User**
 
-The Admin manages movies, shows, and bookings and can check seat availability.
+The Admin can manage movies and shows, view bookings, and check seat availability.
 
 The User can view movies, view showtimes, book tickets, select seats, and view booking details.
 
@@ -17,7 +17,7 @@ The User can view movies, view showtimes, book tickets, select seats, and view b
 
 The main objective of this project is to create a simple movie ticket booking system using Python.
 
-The system manages:
+The system handles:
 
 - Movies
 - Shows
@@ -40,77 +40,165 @@ This project uses the following Python concepts:
 
 ### 1. Variables
 
-Used to store movie names, dates, times, prices, choices, seat counts, and other values.
+Variables are used to store values such as:
+
+- Movie name
+- Date
+- Time
+- Screen
+- Price
+- User choice
+- Seat count
+- Booking details
+
+Example:
+
+    movie_name = input("Enter movie name: ")
+
+---
 
 ### 2. Lists
 
-Used to store movies, bookings, seats, and shows.
-
-Example:
-
-~~~python
-movies = ['BAHUBALI', 'RRR']
-bookings = []
-~~~
-
-### 3. Dictionaries
-
-Used to store show and booking details using key-value pairs.
-
-Example:
-
-~~~python
-show = {
-    "movie": "RRR",
-    "date": "25-09-2026",
-    "time": "06:00 PM",
-    "screen": "Screen 1",
-    "price": 200,
-    "seats": [...]
-}
-~~~
-
-### 4. Functions
-
-The project is divided into multiple functions for better organization.
+Lists are used to store multiple values.
 
 Examples:
 
-~~~python
-movie_booking()
-admin_login()
-admin_menu()
-add_movie()
-remove_movie()
-add_show()
-remove_show()
-manage_seats()
-user_login()
-user_seat()
-user_book_tickets()
-~~~
+    movies = ['BAHUBALI', 'RRR']
 
-### 5. Function Parameters and Arguments
+    bookings = []
 
-Used to pass information between functions.
+    screen1_seats = [
+        "A1", "A2", "A3", "A4", "A5"
+    ]
 
-Example:
+Lists are used for:
 
-~~~python
-def admin_login(admin_username, admin_password):
-~~~
+- Movies
+- Bookings
+- Seats
+- Show data
 
-### 6. Return Statement
+---
 
-Used to stop a function and return control to the calling function.
+### 3. Dictionaries
+
+Dictionaries are used to store data using key-value pairs.
 
 Example:
 
-~~~python
-return
-~~~
+    show = {
+        "movie": "RRR",
+        "date": "25-09-2026",
+        "time": "06:00 PM",
+        "screen": "Screen 1",
+        "price": 200,
+        "seats": [...]
+    }
 
-### 7. Conditional Statements
+Booking details are also stored using dictionaries.
+
+---
+
+### 4. List of Dictionaries
+
+The `shows` list contains multiple dictionaries.
+
+Example:
+
+    shows = [
+        {
+            "movie": "RRR",
+            "date": "25-09-2026",
+            "time": "06:00 PM"
+        }
+    ]
+
+This is used to store multiple movie shows.
+
+---
+
+### 5. Dictionary of Lists / Nested Data
+
+Each show dictionary contains its own `seats` list.
+
+Example:
+
+    {
+        "movie": "RRR",
+        "seats": [
+            "A1", "A2", "A3"
+        ]
+    }
+
+This allows every show to have its own seat status.
+
+---
+
+### 6. Functions
+
+Functions are used to divide the application into different modules.
+
+Examples:
+
+    movie_booking()
+    admin_login()
+    admin_menu()
+    add_movie()
+    remove_movie()
+    display_movies()
+    add_show()
+    remove_show()
+    display_shows()
+    manage_seats()
+    view_bookings()
+    user_login()
+    user_display_movies()
+    user_display_shows()
+    user_book_tickets()
+    user_seat()
+    user_view_booking()
+
+---
+
+### 7. Function Definition using `def`
+
+Functions are created using the `def` keyword.
+
+Example:
+
+    def add_movie():
+        ...
+
+---
+
+### 8. Function Parameters and Arguments
+
+Parameters are used to pass data into functions.
+
+Example:
+
+    def admin_login(admin_username, admin_password):
+
+Here:
+
+- `admin_username` is a parameter.
+- `admin_password` is a parameter.
+
+Arguments are passed when calling the function.
+
+---
+
+### 9. Return Statement
+
+`return` is used to stop a function and return control.
+
+Example:
+
+    return
+
+---
+
+### 10. Conditional Statements
 
 The project uses:
 
@@ -120,99 +208,125 @@ The project uses:
 
 Example:
 
-~~~python
-if movie_name in movies:
-    print("Movie already exists.")
-else:
-    movies.append(movie_name)
-~~~
+    if movie_name in movies:
+        print("Movie already exists.")
+    else:
+        movies.append(movie_name)
 
-### 8. For Loop
+---
 
-Used to iterate through lists.
+### 11. For Loop
 
-Example:
-
-~~~python
-for movie in movies:
-    print(movie)
-~~~
-
-### 9. While Loop
-
-Used when a process needs to continue until a condition becomes false.
+`for` loops are used to go through items in lists.
 
 Example:
 
-~~~python
-while count > 0:
-    ...
-~~~
+    for movie in movies:
+        print(movie)
 
-### 10. Nested Loops
+---
 
-Used when one loop works inside another loop.
+### 12. While Loop
+
+`while` loops are used when an operation needs to continue until a condition becomes false.
 
 Example:
 
-~~~python
-while True:
-    for show in shows:
+    while count > 0:
         ...
-~~~
 
-### 11. User Input
+---
 
-`input()` is used to get data from the Admin and User.
+### 13. Nested Loops
 
-Example:
-
-~~~python
-movie_name = input("Enter movie name: ")
-~~~
-
-### 12. Type Casting
-
-`int()` is used to convert input into an integer.
+A loop is used inside another loop.
 
 Example:
 
-~~~python
-choice = int(input("Enter your choice: "))
-~~~
+    while True:
+        for show in shows:
+            ...
 
-### 13. String Methods
+Nested loops are used in operations such as removing all shows related to a movie.
 
-The project uses:
+---
+
+### 14. Recursion
+
+Some functions call themselves again to continue the application flow.
+
+Examples:
+
+    admin_menu()
+    user_login()
+    user_book_tickets()
+
+---
+
+### 15. User Input
+
+The `input()` function is used to get information from the Admin and User.
+
+Example:
+
+    movie_name = input("Enter movie name: ").upper()
+
+---
+
+### 16. Type Casting
+
+`int()` is used to convert user input from a string to an integer.
+
+Example:
+
+    choice = int(input("Enter your choice: "))
+
+---
+
+### 17. String Methods
+
+The project uses string methods such as:
 
 - `.upper()`
 - `.lower()`
 
-Example:
+Examples:
 
-~~~python
-movie_name = input("Enter movie name: ").upper()
-~~~
+    movie_name = input("Enter movie name: ").upper()
 
-### 14. List Methods
+    choice = input("Enter choice: ").lower()
 
-The project uses methods such as:
+---
+
+### 18. List Methods
+
+The project uses list methods such as:
 
 - `append()`
 - `remove()`
 - `index()`
 
-### 15. Membership Operator
+Examples:
 
-The `in` operator is used to check whether a value exists in a list.
+    movies.append(movie_name)
+
+    movies.remove(movie_name)
+
+    idx = seats.index(seat)
+
+---
+
+### 19. Membership Operator
+
+The `in` operator is used to check whether an item exists in a list.
 
 Example:
 
-~~~python
-if movie_name in movies:
-~~~
+    if movie_name in movies:
 
-### 16. Comparison Operators
+---
+
+### 20. Comparison Operators
 
 The project uses:
 
@@ -223,150 +337,159 @@ The project uses:
 - `>=`
 - `<=`
 
-### 17. Logical Operators
+Example:
 
-The project uses:
+    if seat_no > available_seats:
 
-- `and`
+---
+
+### 21. Logical Operators
+
+The project uses the `and` operator to combine multiple conditions.
 
 Example:
 
-~~~python
-if (
-    show["movie"] == movie_name
-    and show["date"] == date
-    and show["time"] == time
-):
-~~~
+    if (
+        show["movie"] == movie_name
+        and show["date"] == date
+        and show["time"] == time
+        and show["screen"] == screen
+    ):
 
-### 18. `len()`
+---
 
-Used to find the number of items.
+### 22. `len()` Function
 
-Example:
-
-~~~python
-len(selected_seats)
-~~~
-
-### 19. `break`
-
-Used to stop a loop.
-
-### 20. `continue`
-
-Used to move to the next iteration of a loop.
-
-### 21. Recursion
-
-Some menu functions call themselves again to continue the workflow.
-
-Examples:
-
-~~~python
-admin_menu()
-user_login()
-user_book_tickets()
-~~~
-
-### 22. F-Strings
-
-Used to display dynamic values.
+`len()` is used to find the number of items.
 
 Example:
 
-~~~python
-print(f"{movie_name} has been added to the list.")
-~~~
+    len(selected_seats)
 
-### 23. Dictionary Access
+---
+
+### 23. `break`
+
+`break` is used to stop a loop.
+
+Example:
+
+    if admin_choice.lower() != 'y':
+        break
+
+---
+
+### 24. `continue`
+
+`continue` is used to skip the current iteration and continue with the next iteration.
+
+Example:
+
+    if choice.lower() == 'y':
+        continue
+
+---
+
+### 25. F-Strings
+
+F-strings are used to display dynamic values.
+
+Example:
+
+    print(f"{movie_name} has been added to the list.")
+
+---
+
+### 26. Dictionary Access
 
 Dictionary values are accessed using keys.
 
+Examples:
+
+    show["movie"]
+    show["date"]
+    show["time"]
+    show["screen"]
+    show["price"]
+    show["seats"]
+
+---
+
+### 27. Global Data
+
+The application data is created outside the functions and is accessed by multiple functions.
+
+Examples:
+
+    movies
+    bookings
+    shows
+    screen1_seats
+    screen2_seats
+
+---
+
+### 28. Mutable Data
+
+Lists and dictionaries are mutable, so their values can be changed during program execution.
+
 Example:
 
-~~~python
-show["movie"]
-show["price"]
-show["seats"]
-~~~
+    seats[idx] = 'Bk'
 
-### 24. Nested Data Structures
-
-The project uses dictionaries inside lists.
-
-Example:
-
-~~~python
-shows = [
-    {
-        "movie": "RRR",
-        "date": "25-09-2026",
-        "time": "06:00 PM"
-    }
-]
-~~~
+This changes a selected seat to a booked seat.
 
 ---
 
 # 🏗️ Project Architecture
 
-~~~text
-                         MOVIE BOOKING SYSTEM
-                                  |
-                                  v
-                         movie_booking()
-                                  |
-                     +------------+------------+
-                     |                         |
-                     v                         v
-                   ADMIN                      USER
-                     |                         |
-                     v                         v
-               admin_login()              user_login()
-                     |                         |
-                     v              +----------+----------+----------+----------+
-               admin_menu()         |          |          |          |          |
-                     |              v          v          v          v          v
-          +----------+----------+ Movies     Shows     Booking     View       Exit
-          |          |          |
-          v          v          v
-       Add Movie  Remove     Display
-                  Movie      Movies
-
-                     Admin Show Management
-                              |
-                +-------------+-------------+
-                |             |             |
-                v             v             v
-             Add Show    Remove Show   Display Shows
-                                             |
-                                             v
-                                        Manage Seats
-                                             |
-                                             v
-                                        View Bookings
-~~~
+    MOVIE BOOKING SYSTEM
+             |
+             v
+    movie_booking()
+             |
+       +-----+-----+
+       |           |
+       v           v
+     ADMIN        USER
+       |           |
+       v           v
+    admin_menu()  user_login()
+       |           |
+       |       +---+---+---+---+
+       |       |   |   |   |   |
+       |       v   v   v   v   v
+       |     Movies Shows Booking View Exit
+       |
+       +---- Add Movie
+       |
+       +---- Remove Movie
+       |
+       +---- Display Movies
+       |
+       +---- Add Show
+       |
+       +---- Remove Show
+       |
+       +---- Display Shows
+       |
+       +---- Manage Seats
+       |
+       +---- View Bookings
 
 ---
 
 # 📂 Main Data
 
-The project stores data using Python lists and dictionaries.
-
 ## Movies
 
-~~~python
-movies = ['BAHUBALI', 'RRR']
-~~~
+    movies = ['BAHUBALI', 'RRR']
 
 The `movies` list stores movie names.
 
 ## Bookings
 
-~~~python
-bookings = []
-~~~
+    bookings = []
 
 The `bookings` list stores completed ticket booking details.
 
@@ -374,18 +497,14 @@ The `bookings` list stores completed ticket booking details.
 
 Two screens are available:
 
-~~~text
-Screen 1
-Screen 2
-~~~
+    Screen 1
+    Screen 2
 
-Each screen currently contains 15 seats:
+Each screen currently has 15 seats:
 
-~~~text
-A1 A2 A3 A4 A5
-B1 B2 B3 B4 B5
-C1 C2 C3 C4 C5
-~~~
+    A1 A2 A3 A4 A5
+    B1 B2 B3 B4 B5
+    C1 C2 C3 C4 C5
 
 ---
 
@@ -393,24 +512,20 @@ C1 C2 C3 C4 C5
 
 Each show contains:
 
-~~~text
-Movie
-Date
-Time
-Screen
-Price
-Seats
-~~~
+    Movie
+    Date
+    Time
+    Screen
+    Price
+    Seats
 
 Example:
 
-~~~text
-Movie  : RRR
-Date   : 25-09-2026
-Time   : 06:00 PM
-Screen : Screen 1
-Price  : 200
-~~~
+    Movie  : RRR
+    Date   : 25-09-2026
+    Time   : 06:00 PM
+    Screen : Screen 1
+    Price  : 200
 
 Each show has its own seat list.
 
@@ -418,97 +533,89 @@ Each show has its own seat list.
 
 # 🔄 Complete System Workflow
 
-~~~text
-START
-  |
-  v
-movie_booking()
-  |
-  +----------------------+
-  |                      |
-  v                      v
-ADMIN                   USER
-  |                      |
-  v                      v
-Admin Login            User Menu
-  |                      |
-  v                +-----+-----+-----+------+
-Admin Menu          |     |     |     |      |
-  |                 |     |     |     |      |
-  |                 v     v     v     v      v
-  |               Movies Shows Booking View  Exit
-  |
-  +---- Add Movie
-  |
-  +---- Remove Movie
-  |
-  +---- Display Movies
-  |
-  +---- Add Show
-  |
-  +---- Remove Show
-  |
-  +---- Display Shows
-  |
-  +---- Manage Seats
-  |
-  +---- View Bookings
-  |
-  +---- Exit
-~~~
+    START
+      |
+      v
+    movie_booking()
+      |
+      +----------------------+
+      |                      |
+      v                      v
+    ADMIN                   USER
+      |                      |
+      v                      v
+    Admin Login            User Menu
+      |                      |
+      v                +-----+-----+-----+------+
+    Admin Menu          |     |     |     |      |
+      |                 |     |     |     |      |
+      |                 v     v     v     v      v
+      |               Movies Shows Booking View  Exit
+      |
+      +---- Add Movie
+      |
+      +---- Remove Movie
+      |
+      +---- Display Movies
+      |
+      +---- Add Show
+      |
+      +---- Remove Show
+      |
+      +---- Display Shows
+      |
+      +---- Manage Seats
+      |
+      +---- View Bookings
+      |
+      +---- Exit
 
 ---
 
 # 👨‍💼 Admin Module
 
-The Admin side is used to manage the movie booking system.
+The Admin side is used to manage movies and shows, check seat availability, and view bookings.
 
 ## Admin Login
 
 Default credentials:
 
-~~~text
-Username: 123
-Password: 123
-~~~
+    Username: 123
+    Password: 123
 
 ### Admin Login Workflow
 
-~~~text
-Main Menu
-    |
-    v
-  Admin
-    |
-    v
-Enter Username
-    |
-    v
-Enter Password
-    |
-    v
-Validate Credentials
-    |
-    +------ Valid ------> Admin Menu
-    |
-    +------ Invalid ----> Main Menu
-~~~
+    Main Menu
+        |
+        v
+      Admin
+        |
+        v
+    Enter Username
+        |
+        v
+    Enter Password
+        |
+        v
+    Validate Credentials
+        |
+        +------ Valid ------> Admin Menu
+        |
+        +------ Invalid ----> Main Menu
 
 ---
 
 # 🧑‍💼 Admin Menu
 
-~~~text
-1. Add Movie
-2. Remove Movie
-3. Display Movies
-4. Add Show
-5. Remove Show
-6. Display Shows
-7. Manage Seats
-8. View Bookings
-9. Exit
-~~~
+    1. Add Movie
+    2. Remove Movie
+    3. Display Movies
+    4. Add Show
+    5. Remove Show
+    6. Display Shows
+    7. Manage Seats
+    8. View Bookings
+    9. Exit
 
 ---
 
@@ -518,32 +625,30 @@ The Admin can add a new movie.
 
 ### Workflow
 
-~~~text
-Admin Menu
-    |
-    v
-Add Movie
-    |
-    v
-Enter Movie Name
-    |
-    v
-Check Movie Exists
-    |
-    +------ Yes ------> Movie Already Exists
-    |
-    +------ No -------> Add Movie
-                          |
-                          v
-                  Add Another Movie?
-                          |
-                    +-----+-----+
-                    |           |
-                   Yes          No
-                    |           |
-                    v           v
-                Add Again   Admin Menu
-~~~
+    Admin Menu
+        |
+        v
+    Add Movie
+        |
+        v
+    Enter Movie Name
+        |
+        v
+    Check Movie Exists
+        |
+        +------ Yes ------> Movie Already Exists
+        |
+        +------ No -------> Add Movie
+                              |
+                              v
+                      Add Another Movie?
+                              |
+                        +-----+-----+
+                        |           |
+                       Yes          No
+                        |           |
+                        v           v
+                    Add Again   Admin Menu
 
 Duplicate movie names are prevented.
 
@@ -553,35 +658,33 @@ Duplicate movie names are prevented.
 
 The Admin can remove a movie.
 
-When a movie is removed, all shows belonging to that movie are also removed.
+When a movie is removed, its related shows are also removed.
 
 ### Workflow
 
-~~~text
-Admin Menu
-    |
-    v
-Remove Movie
-    |
-    v
-Enter Movie Name
-    |
-    v
-Check Movie
-    |
-    +------ Not Found ------> Display Error
-    |
-    +------ Found ----------> Remove Movie
-                                  |
-                                  v
-                           Find Related Shows
-                                  |
-                                  v
-                           Remove All Shows
-                                  |
-                                  v
-                              Admin Menu
-~~~
+    Admin Menu
+        |
+        v
+    Remove Movie
+        |
+        v
+    Enter Movie Name
+        |
+        v
+    Check Movie
+        |
+        +------ Not Found ------> Display Error
+        |
+        +------ Found ----------> Remove Movie
+                                      |
+                                      v
+                              Find Related Shows
+                                      |
+                                      v
+                              Remove All Shows
+                                      |
+                                      v
+                                 Admin Menu
 
 ---
 
@@ -591,18 +694,16 @@ The Admin can display all available movies.
 
 ### Workflow
 
-~~~text
-Admin Menu
-    |
-    v
-Display Movies
-    |
-    v
-Show All Movies
-    |
-    v
-Admin Menu
-~~~
+    Admin Menu
+        |
+        v
+    Display Movies
+        |
+        v
+    Show All Movies
+        |
+        v
+    Admin Menu
 
 ---
 
@@ -612,81 +713,73 @@ The Admin can create a show for a movie.
 
 The Admin enters:
 
-~~~text
-Movie
-Date
-Time
-Screen
-Price
-~~~
+    Movie
+    Date
+    Time
+    Screen
+    Price
 
-The system creates a seat list for that show.
+The system creates a seat list for the selected screen.
 
 ### Workflow
 
-~~~text
-Admin Menu
-    |
-    v
-Add Show
-    |
-    v
-Enter Movie
-    |
-    v
-Check Movie
-    |
-    v
-Enter Date
-    |
-    v
-Enter Time
-    |
-    v
-Enter Screen
-    |
-    v
-Validate Screen
-    |
-    v
-Check Screen Availability
-    |
-    v
-Enter Ticket Price
-    |
-    v
-Create Seat List
-    |
-    v
-Create Show
-    |
-    v
-Add Show to shows
-    |
-    v
-Admin Menu
-~~~
+    Admin Menu
+        |
+        v
+    Add Show
+        |
+        v
+    Enter Movie
+        |
+        v
+    Check Movie
+        |
+        v
+    Enter Date
+        |
+        v
+    Enter Time
+        |
+        v
+    Enter Screen
+        |
+        v
+    Validate Screen
+        |
+        v
+    Check Screen Availability
+        |
+        v
+    Enter Ticket Price
+        |
+        v
+    Create Seat List
+        |
+        v
+    Create Show
+        |
+        v
+    Add Show
+        |
+        v
+    Admin Menu
 
 ---
 
 # ⏰ Show Availability
 
-A screen cannot be occupied by another show at the same:
+A screen cannot be assigned to another show at the same:
 
-~~~text
-Date
-Time
-Screen
-~~~
+    Date
+    Time
+    Screen
 
 Example:
 
-~~~text
-Movie  : RRR
-Date   : 25-09-2026
-Time   : 09:00 PM
-Screen : Screen 2
-~~~
+    Movie  : RRR
+    Date   : 25-09-2026
+    Time   : 09:00 PM
+    Screen : Screen 2
 
 If the same screen is already occupied at the same date and time, the new show is rejected.
 
@@ -696,100 +789,90 @@ If the same screen is already occupied at the same date and time, the new show i
 
 The Admin can remove an exact show using:
 
-~~~text
-Movie
-Date
-Time
-Screen
-~~~
+    Movie
+    Date
+    Time
+    Screen
 
 ### Workflow
 
-~~~text
-Admin Menu
-    |
-    v
-Remove Show
-    |
-    v
-Enter Movie
-    |
-    v
-Enter Date
-    |
-    v
-Enter Time
-    |
-    v
-Enter Screen
-    |
-    v
-Find Exact Show
-    |
-    +------ Found ------> Remove Show
-    |
-    +------ Not Found --> Show Error
-~~~
+    Admin Menu
+        |
+        v
+    Remove Show
+        |
+        v
+    Enter Movie
+        |
+        v
+    Enter Date
+        |
+        v
+    Enter Time
+        |
+        v
+    Enter Screen
+        |
+        v
+    Find Exact Show
+        |
+        +------ Found ------> Remove Show
+        |
+        +------ Not Found --> Show Error
 
 ---
 
 # 💺 Manage Seats
 
-The Admin can check the seat status of a particular show.
+The current `manage_seats()` function is used by the Admin to check the available seats for a particular show.
 
 The Admin selects:
 
-~~~text
-Movie
-Date
-Time
-Screen
-~~~
+    Movie
+    Date
+    Time
+    Screen
 
-Then the system displays the available seats for that show.
+Then the system displays the available seats.
 
 ### Workflow
 
-~~~text
-Admin Menu
-    |
-    v
-Manage Seats
-    |
-    v
-Select Movie
-    |
-    v
-Select Date
-    |
-    v
-Select Time
-    |
-    v
-Select Screen
-    |
-    v
-Find Show
-    |
-    v
-Display Available Seats
-~~~
+    Admin Menu
+        |
+        v
+    Manage Seats
+        |
+        v
+    Select Movie
+        |
+        v
+    Select Date
+        |
+        v
+    Select Time
+        |
+        v
+    Select Screen
+        |
+        v
+    Find Show
+        |
+        v
+    Display Available Seats
 
 Example:
 
-~~~text
-Available Seats:
+    Available Seats:
 
-A1 A2 A3 A4 A5
-B1 B2 B3 B4 B5
-C1 C2 C3 C4 C5
-~~~
+    A1 A2 A3 A4 A5
+    B1 B2 B3 B4 B5
+    C1 C2 C3 C4 C5
 
 Booked seats are internally marked as:
 
-~~~text
-Bk
-~~~
+    Bk
+
+Note: The current implementation checks and displays seat availability. It does not modify the seat layout.
 
 ---
 
@@ -799,44 +882,38 @@ The Admin can view all completed bookings.
 
 Each booking contains:
 
-~~~text
-Movie
-Date
-Time
-Screen
-Seats
-Amount
-~~~
+    Movie
+    Date
+    Time
+    Screen
+    Seats
+    Amount
 
 Example:
 
-~~~text
-Movie: RRR
-Date: 25-09-2026
-Time: 06:00 PM
-Screen: Screen 1
-Seats: ['A1', 'A2']
-Amount: 400
-~~~
+    Movie: RRR
+    Date: 25-09-2026
+    Time: 06:00 PM
+    Screen: Screen 1
+    Seats: ['A1', 'A2']
+    Amount: 400
 
 ### Workflow
 
-~~~text
-Admin Menu
-    |
-    v
-View Bookings
-    |
-    v
-Check Bookings
-    |
-    +------ Empty ------> No Bookings Found
-    |
-    +------ Available --> Display Booking Details
-    |
-    v
-Admin Menu
-~~~
+    Admin Menu
+        |
+        v
+    View Bookings
+        |
+        v
+    Check Bookings
+        |
+        +------ Empty ------> No Bookings Found
+        |
+        +------ Available --> Display Booking Details
+        |
+        v
+    Admin Menu
 
 ---
 
@@ -846,13 +923,11 @@ The User side allows customers to interact with the booking system.
 
 ## User Menu
 
-~~~text
-1. View Movies
-2. View Showtimes
-3. Book Tickets
-4. View Booking
-5. Exit
-~~~
+    1. View Movies
+    2. View Showtimes
+    3. Book Tickets
+    4. View Booking
+    5. Exit
 
 ---
 
@@ -862,25 +937,21 @@ The User can view all available movies.
 
 ### Workflow
 
-~~~text
-User Menu
-    |
-    v
-View Movies
-    |
-    v
-Display Movies
-    |
-    v
-Ask Return to Menu
-~~~
+    User Menu
+        |
+        v
+    View Movies
+        |
+        v
+    Display Movies
+        |
+        v
+    Ask Return to Menu
 
 Example:
 
-~~~text
-BAHUBALI
-RRR
-~~~
+    BAHUBALI
+    RRR
 
 ---
 
@@ -890,38 +961,32 @@ The User can view all available shows.
 
 Each show displays:
 
-~~~text
-Movie
-Date
-Time
-Screen
-Price
-~~~
+    Movie
+    Date
+    Time
+    Screen
+    Price
 
 Example:
 
-~~~text
-Movie: RRR
-Date: 25-09-2026
-Time: 06:00 PM
-Screen: Screen 1
-Price: 200
-~~~
+    Movie: RRR
+    Date: 25-09-2026
+    Time: 06:00 PM
+    Screen: Screen 1
+    Price: 200
 
 ### Workflow
 
-~~~text
-User Menu
-    |
-    v
-View Showtimes
-    |
-    v
-Display All Shows
-    |
-    v
-User Menu
-~~~
+    User Menu
+        |
+        v
+    View Showtimes
+        |
+        v
+    Display All Shows
+        |
+        v
+    User Menu
 
 ---
 
@@ -931,60 +996,58 @@ Ticket booking is the main feature of the project.
 
 ### Workflow
 
-~~~text
-User Menu
-    |
-    v
-Book Tickets
-    |
-    v
-Display Movies
-    |
-    v
-Enter Movie
-    |
-    v
-Check Movie
-    |
-    v
-Display Shows for Movie
-    |
-    v
-Enter Date
-    |
-    v
-Enter Time
-    |
-    v
-Find Selected Show
-    |
-    v
-Display Available Seats
-    |
-    v
-Enter Number of Seats
-    |
-    v
-Validate Number of Seats
-    |
-    v
-Select Seats
-    |
-    v
-Mark Selected Seats as Booked
-    |
-    v
-Calculate Amount
-    |
-    v
-Create Booking
-    |
-    v
-Store Booking
-    |
-    v
-User Menu
-~~~
+    User Menu
+        |
+        v
+    Book Tickets
+        |
+        v
+    Display Movies
+        |
+        v
+    Enter Movie
+        |
+        v
+    Check Movie
+        |
+        v
+    Display Shows for Movie
+        |
+        v
+    Enter Date
+        |
+        v
+    Enter Time
+        |
+        v
+    Find Selected Show
+        |
+        v
+    Display Available Seats
+        |
+        v
+    Enter Number of Seats
+        |
+        v
+    Validate Number of Seats
+        |
+        v
+    Select Seats
+        |
+        v
+    Mark Seats as Booked
+        |
+        v
+    Calculate Amount
+        |
+        v
+    Create Booking
+        |
+        v
+    Store Booking
+        |
+        v
+    User Menu
 
 ---
 
@@ -994,24 +1057,18 @@ The User first selects the number of seats.
 
 Example:
 
-~~~text
-How many seats do you want to book: 2
-~~~
+    How many seats do you want to book: 2
 
 Then the User selects:
 
-~~~text
-A1
-A2
-~~~
+    A1
+    A2
 
 The selected seats are changed internally to:
 
-~~~text
-Bk
-~~~
+    Bk
 
-This prevents the same seats from being selected again.
+This prevents booked seats from being selected again.
 
 ---
 
@@ -1019,26 +1076,22 @@ This prevents the same seats from being selected again.
 
 The system checks:
 
-~~~text
-Seat number must be greater than 0
-Seat number cannot be greater than available seats
-Booked seats cannot be selected
-~~~
+    Number of seats must be greater than 0
+    Number of seats cannot exceed available seats
+    Booked seats cannot be selected
 
 Example:
 
-~~~text
-Available Seats = 10
+    Available Seats = 10
 
-Enter 0
--> Rejected
+    Enter 0
+    -> Rejected
 
-Enter 15
--> Rejected
+    Enter 15
+    -> Rejected
 
-Enter 2
--> Booking continues
-~~~
+    Enter 2
+    -> Booking continues
 
 ---
 
@@ -1046,17 +1099,13 @@ Enter 2
 
 The total ticket amount is calculated using:
 
-~~~text
-Number of Seats × Ticket Price
-~~~
+    Number of Seats × Ticket Price
 
 Example:
 
-~~~text
-2 Seats × ₹200
-=
-₹400
-~~~
+    2 Seats × ₹200
+    =
+    ₹400
 
 ---
 
@@ -1064,33 +1113,27 @@ Example:
 
 After successful booking, the booking contains:
 
-~~~text
-Movie
-Date
-Time
-Screen
-Selected Seats
-Amount
-~~~
+    Movie
+    Date
+    Time
+    Screen
+    Selected Seats
+    Amount
 
 Example:
 
-~~~python
-{
-    "movie": "RRR",
-    "date": "25-09-2026",
-    "time": "06:00 PM",
-    "screen": "Screen 1",
-    "seats": ["A1", "A2"],
-    "amount": 400
-}
-~~~
+    {
+        "movie": "RRR",
+        "date": "25-09-2026",
+        "time": "06:00 PM",
+        "screen": "Screen 1",
+        "seats": ["A1", "A2"],
+        "amount": 400
+    }
 
 The booking is then added to:
 
-~~~python
-bookings
-~~~
+    bookings
 
 ---
 
@@ -1100,33 +1143,29 @@ The User can view booking details.
 
 Displayed information:
 
-~~~text
-Movie
-Date
-Time
-Screen
-Seats
-Amount
-~~~
+    Movie
+    Date
+    Time
+    Screen
+    Seats
+    Amount
 
 ### Workflow
 
-~~~text
-User Menu
-    |
-    v
-View Booking
-    |
-    v
-Check Booking List
-    |
-    +------ Empty ------> No Bookings Found
-    |
-    +------ Available --> Display Booking Details
-    |
-    v
-User Menu
-~~~
+    User Menu
+        |
+        v
+    View Booking
+        |
+        v
+    Check Booking List
+        |
+        +------ Empty ------> No Bookings Found
+        |
+        +------ Available --> Display Booking Details
+        |
+        v
+    User Menu
 
 ---
 
@@ -1134,40 +1173,36 @@ User Menu
 
 The main relationship between the project data is:
 
-~~~text
-Movies
-   |
-   v
-Shows
-   |
-   v
-Seats
-   |
-   v
-Booking
-~~~
+    Movies
+       |
+       v
+    Shows
+       |
+       v
+    Seats
+       |
+       v
+    Booking
 
 More specifically:
 
-~~~text
-Movie
-  |
-  +---- Show 1
-  |       |
-  |       +---- Date
-  |       +---- Time
-  |       +---- Screen
-  |       +---- Price
-  |       +---- Seats
-  |
-  +---- Show 2
-          |
-          +---- Date
-          +---- Time
-          +---- Screen
-          +---- Price
-          +---- Seats
-~~~
+    Movie
+      |
+      +---- Show 1
+      |       |
+      |       +---- Date
+      |       +---- Time
+      |       +---- Screen
+      |       +---- Price
+      |       +---- Seats
+      |
+      +---- Show 2
+              |
+              +---- Date
+              +---- Time
+              +---- Screen
+              +---- Price
+              +---- Seats
 
 When the User selects a show, the seat list belonging to that show is used for booking.
 
@@ -1179,37 +1214,27 @@ The project contains validation for:
 
 ### Admin Login
 
-~~~text
-Username
-Password
-~~~
+    Username
+    Password
 
 ### Movies
 
-~~~text
-Duplicate movie checking
-~~~
+    Duplicate movie checking
 
 ### Shows
 
-~~~text
-Screen validation
-Screen/date/time availability
-~~~
+    Screen validation
+    Screen/date/time availability
 
 ### Seats
 
-~~~text
-Number of seats must be greater than 0
-Number of seats cannot exceed available seats
-Booked seats cannot be selected
-~~~
+    Number of seats must be greater than 0
+    Number of seats cannot exceed available seats
+    Booked seats cannot be selected
 
 ### Menu
 
-~~~text
-Invalid choices are handled in the user menu
-~~~
+    Invalid user choices are handled
 
 ---
 
@@ -1217,89 +1242,79 @@ Invalid choices are handled in the user menu
 
 ## Main Function
 
-~~~text
-movie_booking()
-~~~
+    movie_booking()
 
 ## Admin Functions
 
-~~~text
-admin_login()
-admin_menu()
-add_movie()
-display_movies()
-remove_movie()
-add_show()
-remove_show()
-display_shows()
-manage_seats()
-view_bookings()
-~~~
+    admin_login()
+    admin_menu()
+    add_movie()
+    display_movies()
+    remove_movie()
+    add_show()
+    remove_show()
+    display_shows()
+    manage_seats()
+    view_bookings()
 
 ## User Functions
 
-~~~text
-user_login()
-user_display_movies()
-user_display_shows()
-user_book_tickets()
-user_seat()
-user_view_booking()
-user_shows()
-user_screen()
-~~~
+    user_login()
+    user_display_movies()
+    user_display_shows()
+    user_book_tickets()
+    user_seat()
+    user_view_booking()
+    user_shows()
+    user_screen()
 
 ---
 
 # 📊 Project Module Structure
 
-~~~text
-MOVIE BOOKING SYSTEM
-│
-├── Main Module
-│   └── movie_booking()
-│
-├── Admin Module
-│   ├── admin_login()
-│   ├── admin_menu()
-│   ├── add_movie()
-│   ├── remove_movie()
-│   ├── display_movies()
-│   ├── add_show()
-│   ├── remove_show()
-│   ├── display_shows()
-│   ├── manage_seats()
-│   └── view_bookings()
-│
-├── User Module
-│   ├── user_login()
-│   ├── user_display_movies()
-│   ├── user_display_shows()
-│   ├── user_book_tickets()
-│   ├── user_seat()
-│   └── user_view_booking()
-│
-└── Data
-    ├── movies
-    ├── shows
-    ├── bookings
-    ├── screen1_seats
-    └── screen2_seats
-~~~
+    MOVIE BOOKING SYSTEM
+    │
+    ├── Main Module
+    │   └── movie_booking()
+    │
+    ├── Admin Module
+    │   ├── admin_login()
+    │   ├── admin_menu()
+    │   ├── add_movie()
+    │   ├── remove_movie()
+    │   ├── display_movies()
+    │   ├── add_show()
+    │   ├── remove_show()
+    │   ├── display_shows()
+    │   ├── manage_seats()
+    │   └── view_bookings()
+    │
+    ├── User Module
+    │   ├── user_login()
+    │   ├── user_display_movies()
+    │   ├── user_display_shows()
+    │   ├── user_book_tickets()
+    │   ├── user_seat()
+    │   └── user_view_booking()
+    │
+    └── Data
+        ├── movies
+        ├── shows
+        ├── bookings
+        ├── screen1_seats
+        └── screen2_seats
 
 ---
 
 # 🖥️ Main Application Flow
 
-~~~text
-=================================
-   WELCOME TO MOVIE BOOKING SYSTEM
-=================================
+    =================================
+       WELCOME TO MOVIE BOOKING SYSTEM
+    =================================
 
-1. Admin
-2. User
-3. Exit
-~~~
+    1. Admin
+    2. User
+    3. Exit
 
 The user selects the required option.
 
@@ -1307,84 +1322,78 @@ The user selects the required option.
 
 # 👨‍💼 Admin Flow
 
-~~~text
-Main Menu
-    |
-    v
-Admin Login
-    |
-    v
-Admin Menu
-    |
-    +---- Add Movie
-    |
-    +---- Remove Movie
-    |
-    +---- Display Movies
-    |
-    +---- Add Show
-    |
-    +---- Remove Show
-    |
-    +---- Display Shows
-    |
-    +---- Manage Seats
-    |
-    +---- View Bookings
-    |
-    +---- Exit
-~~~
+    Main Menu
+        |
+        v
+    Admin Login
+        |
+        v
+    Admin Menu
+        |
+        +---- Add Movie
+        |
+        +---- Remove Movie
+        |
+        +---- Display Movies
+        |
+        +---- Add Show
+        |
+        +---- Remove Show
+        |
+        +---- Display Shows
+        |
+        +---- Manage Seats
+        |
+        +---- View Bookings
+        |
+        +---- Exit
 
 ---
 
 # 👤 User Flow
 
-~~~text
-Main Menu
-    |
-    v
-User Menu
-    |
-    +---- View Movies
-    |
-    +---- View Showtimes
-    |
-    +---- Book Tickets
-    |        |
-    |        +---- Select Movie
-    |        +---- Select Show
-    |        +---- Select Seats
-    |        +---- Calculate Amount
-    |        +---- Save Booking
-    |
-    +---- View Booking
-    |
-    +---- Exit
-~~~
+    Main Menu
+        |
+        v
+    User Menu
+        |
+        +---- View Movies
+        |
+        +---- View Showtimes
+        |
+        +---- Book Tickets
+        |        |
+        |        +---- Select Movie
+        |        +---- Select Show
+        |        +---- Select Seats
+        |        +---- Calculate Amount
+        |        +---- Save Booking
+        |
+        +---- View Booking
+        |
+        +---- Exit
 
 ---
 
 # ✅ Current Features
 
-~~~text
-✔ Admin Login
-✔ User Menu
-✔ Add Movie
-✔ Remove Movie
-✔ Display Movies
-✔ Add Show
-✔ Remove Show
-✔ Display Shows
-✔ Screen Selection
-✔ Screen Availability Check
-✔ Seat Availability
-✔ Seat Booking
-✔ Booked Seat Validation
-✔ Ticket Price Calculation
-✔ Booking Storage
-✔ Admin Booking View
-✔ User Booking View
-~~~
+    ✔ Admin Login
+    ✔ User Menu
+    ✔ Add Movie
+    ✔ Remove Movie
+    ✔ Display Movies
+    ✔ Add Show
+    ✔ Remove Show
+    ✔ Display Shows
+    ✔ Screen Selection
+    ✔ Screen Availability Check
+    ✔ Seat Availability
+    ✔ Seat Booking
+    ✔ Booked Seat Validation
+    ✔ Ticket Price Calculation
+    ✔ Booking Storage
+    ✔ Admin Booking View
+    ✔ User Booking View
 
 ---
 
@@ -1392,19 +1401,18 @@ User Menu
 
 The project can later be extended with:
 
-~~~text
-User Registration
-User Login
-User-Specific Booking History
-Cart System
-Payment System
-Booking Cancellation
-Database Integration
-More Screens
-More Seat Rows
-Better Input Validation
-Improved Menu Navigation
-~~~
+    User Registration
+    User Login
+    User-Specific Booking History
+    Cart System
+    Payment System
+    Booking Cancellation
+    Database Integration
+    More Screens
+    More Seat Rows
+    Advanced Seat Management
+    Better Input Validation
+    Improved Menu Navigation
 
 ---
 
@@ -1418,9 +1426,7 @@ Install Python on your system.
 
 Save the Python file as:
 
-~~~text
-movie_booking.py
-~~~
+    movie_booking.py
 
 ### Step 3
 
@@ -1430,19 +1436,15 @@ Open the terminal in the project folder.
 
 Run the program:
 
-~~~bash
-python movie_booking.py
-~~~
+    python movie_booking.py
 
 ### Step 5
 
 Select:
 
-~~~text
-1. Admin
-2. User
-3. Exit
-~~~
+    1. Admin
+    2. User
+    3. Exit
 
 ---
 
@@ -1458,29 +1460,25 @@ B.Tech - Artificial Intelligence and Machine Learning
 
 The Movie Booking System is a Python-based console application that manages:
 
-~~~text
-Movies
-Shows
-Screens
-Seats
-Ticket Prices
-Bookings
-~~~
+    Movies
+    Shows
+    Screens
+    Seats
+    Ticket Prices
+    Bookings
 
-The Admin manages movies, shows, and bookings and can check seat availability.
+The Admin manages movies and shows, checks seat availability, and views bookings.
 
 The User can view movies, view showtimes, select seats, book tickets, and view booking information.
 
 ### Main Workflow
 
-~~~text
-Movie
-   ↓
-Show
-   ↓
-Seat Selection
-   ↓
-Ticket Booking
-   ↓
-Booking Details
-~~~
+    Movie
+       ↓
+    Show
+       ↓
+    Seat Selection
+       ↓
+    Ticket Booking
+       ↓
+    Booking Details
