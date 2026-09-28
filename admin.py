@@ -166,6 +166,8 @@ def add_movie():
         admin_choice = input("Do you want to add another movie? (y/n): ")
         if admin_choice.lower() != 'y':
             break
+        
+    admin_menu()
 
 def display_movies():
     for movie in movies:
@@ -284,11 +286,12 @@ def add_show():
 
 def remove_show():
     movie_name = input("Enter movie name: ").upper()
-    date = input("Enter date: ")
-    time = input("Enter show time: ")
+    date = input("Enter date (dd-mm-yyyy): ")
+    time = input("Enter show time (hh:mm AM/PM): ")
+    screen = input("Enter screen (Screen 1 / Screen 2): ")
 
     for show in shows:
-        if show["movie"] == movie_name and show["date"] == date and show["time"] == time:
+        if show["movie"] == movie_name and show["date"] == date and show["time"] == time and show["screen"] == screen:
             shows.remove(show)
             print("Show removed successfully.")
             admin_menu()
@@ -297,24 +300,31 @@ def remove_show():
         print("Show not found.")
         admin_menu()
 
-def manage_seats():
-    movie_name = input("Enter movie name: ").upper()
-    date = input("Enter date: ")
-    time = input("Enter show time: ")
+def manage_seats(): 
+    movie_name = input("Enter movie name: ").upper() 
+    date = input("Enter date (dd-mm-yyyy): ") 
+    time = input("Enter show time (hh:mm AM/PM): ")
+    screen = input("Enter screen (Screen 1 / Screen 2): ")
 
-    for show in shows:
-        if show["movie"] == movie_name and show["date"] == date and show["time"] == time:
+    for show in shows: 
+        if (
+            show["movie"] == movie_name
+            and show["date"] == date
+            and show["time"] == time
+            and show["screen"] == screen
+        ):
 
-            print("Available Seats:")
-
-            for seat in show["seats"]:
-                print(seat, end=" ")
-
-            print()
-            admin_menu()
-            return
-
-    print("Show not found.")
+            print("Available Seats:") 
+ 
+            for seat in show["seats"]: 
+                if seat != "Bk":
+                    print(seat, end=" ") 
+ 
+            print() 
+            admin_menu() 
+            return 
+ 
+    print("Show not found.") 
     admin_menu()
 
 def view_bookings():
@@ -380,6 +390,7 @@ def user_login():
         movie_booking()
     else:
         print("Invalid choice")
+        user_login()
 
 
 def user_view_booking():
@@ -413,43 +424,67 @@ def user_seat(show):
 
     price = show["price"]
 
+    print("Available Seats:")
+
     for seat in seats:
-        print(seat, end=" ")
+        if seat!='Bk':
+            print(seat, end=" ")
     
     print()
 
+    available_seats = 0
+
+    for seat in seats:
+        if seat != "Bk":
+            available_seats += 1
+    
     seat_no = int(input("How many seats do you want to book: "))
+
+    if seat_no <= 0:
+        print("Please enter at least 1 seat.")
+        user_login()
+        return
+
+    if seat_no > available_seats:
+        print(f"Only {available_seats} seats are available.")
+        user_login()
+        return
 
     count = seat_no
 
     while count>0:
         seat = input("Enter seat: ").upper()
 
-        if seat in seats:
+        if seat in seats and seat!='Bk':
             idx = seats.index(seat)
             selected_seats.append(seat)
             seats[idx] = 'Bk'
             count-=1
         else:
-            print("Please select booking from start")
-            
-    if seat_no == len(selected_seats):
-        print('Selected Seats: ',selected_seats)
-        print(f"The Amount you need to pay {len(selected_seats)*price} for {len(selected_seats)} seats")
+            print("Seat is not available. Please enter another seat.")
 
-        booking = {
-        "movie": show["movie"],
-        "date": show["date"],
-        "time": show["time"],
-        "screen": show["screen"],
-        "seats": selected_seats,
-        "amount": len(selected_seats) * price
+            
+    print("Selected Seats:", selected_seats)
+
+    amount = len(selected_seats) * price
+
+    print(f"The Amount you need to pay {amount} for {len(selected_seats)} seats")
+
+
+    booking = {
+    "movie": show["movie"],
+    "date": show["date"],
+    "time": show["time"],
+    "screen": show["screen"],
+    "seats": selected_seats,
+    "amount": len(selected_seats) * price
     }
 
-        bookings.append(booking)
+    bookings.append(booking)
     user_login()
 
 def user_book_tickets():
+    print("Available Movies:")
     user_display_movies()
 
     user_movie = input("Enter movie name: ").upper()
